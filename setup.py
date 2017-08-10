@@ -2,7 +2,7 @@
 from setuptools import setup
 
 setup(name='fmapi',
-      version='0.1',
+      version='0.3',
       description='Foundation Mercury Python API Client',
       url='https://github.com/FoundationMercury/fmpyapi',
       author='Foundation Mercury',

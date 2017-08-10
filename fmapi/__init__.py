@@ -3132,11 +3132,15 @@ class Client():
         "Call an API GET endpoint"
         full_url = self.url_base + url
         r = None
-        if self.username:
-            r = requests.get(full_url, auth=(self.username, self.password))
-        else:
-            r = requests.get(full_url) # Uses .netrc
-        return r.json()
+        try:
+            if self.username:
+                r = requests.get(full_url, auth=(self.username, self.password))
+            else:
+                r = requests.get(full_url) # Uses .netrc
+            r.raise_for_status()
+            return r.json()
+        except requests.exceptions.RequestException as e: 
+            raise e
     
 
     def get_states(self):
